@@ -60,7 +60,7 @@ app.post('/create-user', (req,res) => {
 })
 
 app.get('/get-total-ranked', (req,res) => {
-    User.find({}).sort({avgPoints: -1}).limit(50).exec( (err,doc) => {
+    User.find({}).sort({avgTotalPoints: -1}).limit(50).exec( (err,doc) => {
         if (err) {
             return res.status(500).send({
                 message: "Server ERROR",
