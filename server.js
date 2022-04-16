@@ -11,6 +11,8 @@ const User = require('./Models/user');
 const port = process.env.PORT || 8080;
 const mongoURI  = process.env.URI;
 
+const USER_LIMIT = 25
+
 const app = express();
 
 app.use(cors());
@@ -60,7 +62,7 @@ app.post('/create-user', (req,res) => {
 })
 
 app.get('/get-total-ranked', (req,res) => {
-    User.find({}).sort({avgTotalPoints: -1}).limit(50).exec( (err,doc) => {
+    User.find({}).sort({avgTotalPoints: -1}).limit(USER_LIMIT).exec( (err,doc) => {
         if (err) {
             return res.status(500).send({
                 message: "Server ERROR",
@@ -76,7 +78,7 @@ app.get('/get-total-ranked', (req,res) => {
     })
 
 app.get('/get-HTML-ranked', (req,res) => {
-User.find({}).sort({avgHTMLPoints: -1}).limit(50).exec( (err,doc) => {
+User.find({}).sort({avgHTMLPoints: -1}).limit(USER_LIMIT).exec( (err,doc) => {
     if (err) {
         return res.status(500).send({
             message: "Server ERROR",
@@ -91,7 +93,7 @@ User.find({}).sort({avgHTMLPoints: -1}).limit(50).exec( (err,doc) => {
 })
 
 app.get('/get-JS-ranked', (req,res) => {
-    User.find({}).sort({avgJSPoints: -1}).limit(50).exec( (err,doc) => {
+    User.find({}).sort({avgJSPoints: -1}).limit(USER_LIMIT).exec( (err,doc) => {
         if (err) {
             return res.status(500).send({
                 message: "Server ERROR",
@@ -106,7 +108,7 @@ app.get('/get-JS-ranked', (req,res) => {
     })
 
 app.get('/get-CSS-ranked', (req,res) => {
-    User.find({}).sort({avgCSSPoints: -1}).limit(50).exec( (err,doc) => {
+    User.find({}).sort({avgCSSPoints: -1}).limit(USER_LIMIT).exec( (err,doc) => {
         if (err) {
             return res.status(500).send({
                 message: "Server ERROR",
