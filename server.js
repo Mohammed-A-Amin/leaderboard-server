@@ -64,12 +64,13 @@ app.get('/get-total-ranked', (req,res) => {
         if (err) {
             return res.status(500).send({
                 message: "Server ERROR",
-                error: err
+                status: 500
             })
         }
             return res.status(200).send({
                 message: "Users found!",
-                document: doc,
+                status: 200,
+                users: doc,
             })
         })
     })
