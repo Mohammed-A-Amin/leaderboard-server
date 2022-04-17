@@ -61,7 +61,7 @@ app.post('/create-user', (req,res) => {
 
 })
 
-app.get('/get-total-ranked', (req,res) => {
+app.get('/get-suite-ranked', (req,res) => {
     User.find({}).sort({avgTotalPoints: -1}).limit(USER_LIMIT).exec( (err,doc) => {
         if (err) {
             return res.status(500).send({
@@ -87,7 +87,7 @@ User.find({}).sort({avgHTMLPoints: -1}).limit(USER_LIMIT).exec( (err,doc) => {
     }
         return res.status(200).send({
             message: "Users found!",
-            document: doc,
+            users: doc,
         })
     })
 })
@@ -102,7 +102,7 @@ app.get('/get-JS-ranked', (req,res) => {
         }
             return res.status(200).send({
                 message: "Users found!",
-                document: doc,
+                users: doc,
             })
         })
     })
@@ -117,7 +117,7 @@ app.get('/get-CSS-ranked', (req,res) => {
         }
             return res.status(200).send({
                 message: "Users found!",
-                document: doc,
+                users: doc,
             })
         })
     })
